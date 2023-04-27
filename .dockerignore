@@ -6,5 +6,4 @@ dist/
 Dockerfile
 provisioner.dockerfile
 jest.config.ts
-src
 resources/
