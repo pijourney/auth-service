@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64 ghcr.io/pijourney/service-provisioner:1.0.0
+FROM --platform=linux/arm64 ghcr.io/pijourney/service-provisioner:1.0.1
 
 COPY ../resources/schema.sql ${INIT_DIR}
 
