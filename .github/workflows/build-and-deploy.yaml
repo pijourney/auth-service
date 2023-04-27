@@ -86,7 +86,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           platforms: linux/arm64
-          context: .
+          context: ${{ github.workspace }}
           file: ./provisioner.dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta-service.outputs.tags }}
