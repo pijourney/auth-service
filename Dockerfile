@@ -1,13 +1,29 @@
-FROM  node:20-buster-slim
+# Build stage
+FROM node:20-buster-slim AS build
 
 # Create a non-root user for better security
 RUN useradd -m appuser
 WORKDIR /app
 COPY package*.json ./
-# Move over code and install dependencies
-RUN npm ci --only=production
+
+# Install all dependencies, including development dependencies
+RUN npm ci
 COPY --chown=appuser:appuser . .
 RUN npm run build
+
+# Final stage
+FROM node:20-buster-slim
+
+RUN useradd -m appuser
+WORKDIR /app
+COPY package*.json ./
+
+# Install only production dependencies
+RUN npm ci --only=production
+
+# Copy built files and set ownership
+COPY --chown=appuser:appuser --from=build /app/dist/src /app/dist/src
+
 # Switch to the non-root user
 USER appuser
 
