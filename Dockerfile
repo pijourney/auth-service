@@ -1,4 +1,4 @@
-FROM  20-buster-slim
+FROM  node:slim
 
 # Create a non-root user for better security
 RUN useradd -m appuser
