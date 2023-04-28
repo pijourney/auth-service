@@ -19,7 +19,13 @@ app.use(cors());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api", userRoutes);
-
+// livness
+app.get("/liveness", (req, res) => {
+  res.status(200).send("OK");
+});
+app.get("/readiness", (req, res) => {
+  res.status(200).send("OK");
+});
 // 404 Error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
   const error = createHttpError(404, "Not Found");
