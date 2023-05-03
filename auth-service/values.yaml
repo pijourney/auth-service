@@ -8,7 +8,6 @@ image:
   repository: ghcr.io/pijourney/auth-service
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
 
 imagePullSecrets:
   - name: docker-registry
@@ -95,5 +94,4 @@ database:
 provisioner:
   image:
     repository: ghcr.io/pijourney/auth-service-provisioner
-    tag: latest
     pullPolicy: IfNotPresent

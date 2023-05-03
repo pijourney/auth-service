@@ -71,6 +71,12 @@ spec:
                 secretKeyRef:
                   name: {{ .Chart.Name }}-db-conf
                   key: username
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: secret-key
+                  
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
