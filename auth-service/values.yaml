@@ -87,7 +87,7 @@ affinity: {}
 
 ## PROVISIONER ##
 database:
-  username: pijourney
+  username: auth_service_db_user
   name: auth_service_db
 
 provisioner:
