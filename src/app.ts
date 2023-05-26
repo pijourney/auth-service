@@ -12,13 +12,15 @@ dotenv.config({ path: ".env" });
 
 // Middlewares
 app.use(express.json());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
-app.use(cors());
-
-// Routes
-app.use("/api/auth", authRoutes);
-app.use("/api", userRoutes);
 // livness
 app.get("/liveness", (req, res) => {
   res.status(200).send("OK");
@@ -26,6 +28,11 @@ app.get("/liveness", (req, res) => {
 app.get("/readiness", (req, res) => {
   res.status(200).send("OK");
 });
+
+// Routes
+app.use("/api", userRoutes);
+app.use("/api/auth", authRoutes);
+
 // 404 Error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
   const error = createHttpError(404, "Not Found");
