@@ -17,10 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 
 // livness
-app.get("/auth-service/liveness", (req, res) => {
+app.get("/liveness", (req, res) => {
   res.status(200).send("OK");
 });
-app.get("/auth-service/readiness", (req, res) => {
+app.get("/readiness", (req, res) => {
   res.status(200).send("OK");
 });
 
