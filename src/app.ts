@@ -16,16 +16,16 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 // livness
-app.get("/liveness", (req, res) => {
+app.get("/auth-service/liveness", (req, res) => {
   res.status(200).send("OK");
 });
-app.get("/readiness", (req, res) => {
+app.get("/auth-service/readiness", (req, res) => {
   res.status(200).send("OK");
 });
 
 // Routes
-app.use("/api", userRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/auth-service/api", userRoutes);
+app.use("/auth-service/api/auth", authRoutes);
 
 // 404 Error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
